@@ -1,17 +1,11 @@
-import './style.css';
+import './style.css'
+import { scoreToWin, minOfCards, gameData, cardsOfDeck } from './model'
 
-// Constants
+let { cardsInPiles, roundScore, totalGameScore } = gameData
 
-const scoreToWin: number = 7.5;
-const minOfCards: number = 0;
-
-// Global variables
-
-let cardsInPiles: number = 40;
-let roundScore: number = 0;
-let totalGameScore: number = 0;
-
-// Interfaces
+interface ElementWithInnerText {
+    innerText: string;
+}
 
 interface Card {
     name: string;
@@ -19,9 +13,6 @@ interface Card {
     url: string;
 }
 
-interface ElementWithInnerText {
-    innerText: string;
-}
 
 // DOM elements
 
@@ -36,21 +27,6 @@ const elements = {
     message: getElementOrThrow<HTMLDivElement>('message'),
     newGameButton: getElementOrThrow<HTMLButtonElement>('new-game-button'),
 };
-
-// Game elements
-
-const cardsOfDeck: Card[] = [
-    { name: "1 Copas", value: 1, url: "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/copas/1_as-copas.jpg" },
-    { name: "2 Copas", value: 2, url: "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/copas/2_dos-copas.jpg" },
-    { name: "3 Copas", value: 3, url: "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/copas/3_tres-copas.jpg" },
-    { name: "4 Copas", value: 4, url: "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/copas/4_cuatro-copas.jpg" },
-    { name: "5 Copas", value: 5, url: "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/copas/5_cinco-copas.jpg" },
-    { name: "6 Copas", value: 6, url: "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/copas/6_seis-copas.jpg" },
-    { name: "7 Copas", value: 7, url: "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/copas/7_siete-copas.jpg" },
-    { name: "Sota de copas", value: 0.5, url: "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/copas/10_sota-copas.jpg" },
-    { name: "Caballo de copas", value: 0.5, url: "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/copas/11_caballo-copas.jpg" },
-    { name: "Rey de copas", value: 0.5, url: "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/copas/12_rey-copas.jpg" }
-];
 
 // Initialization
 
@@ -151,8 +127,8 @@ function resetGame() {
     const elements = initializeElements();
     changeImage("card-img", "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/back.jpg");
     elements.onlyOnGameContainer.style.display = "none",
-    elements.onlyWhenGameEnded.style.display = "block",
-    cardsInPiles = 40;
+        elements.onlyWhenGameEnded.style.display = "block",
+        cardsInPiles = 40;
     roundScore = 0;
 }
 
@@ -168,7 +144,7 @@ function giveRandomCard(): Card {
 
 function pickCardButton() {
     const pickedCard = giveRandomCard();
-    
+
     if (pickedCard) {
         updateGame(pickedCard);
         updateUI(pickedCard);
