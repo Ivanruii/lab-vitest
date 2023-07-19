@@ -10,7 +10,6 @@ interface Card {
     url: string;
 }
 
-
 const elements = {
     onlyOnGameContainer: getElementOrThrow<HTMLDivElement>('only-on-game'),
     onlyWhenGameEnded: getElementOrThrow<HTMLDivElement>('only-when-game-ended'),
@@ -23,33 +22,18 @@ const elements = {
     newGameButton: getElementOrThrow<HTMLButtonElement>('new-game-button'),
 };
 
-function getElementOrThrow<Type>(id: string): Type {
-    const element = document.getElementById(id) as Type;
-    if (!element) {
-        throw new Error(`Element with id "${id}" not found.`);
-    }
-    return element;
-}
-
 function initializeElements() {
     return {
         ...elements
     };
 }
 
-function gameWinned() {
-    const elements = initializeElements();
-    if (gameData.roundScore === scoreToWin) {
-        setMessageText<HTMLDivElement>("message", `Has ganado la partida.`);
-        elements.onlyWhenGameEnded.style.display = "block"
-    } else if (gameData.cardsInPiles === minOfCards) {
-        setMessageText<HTMLDivElement>("message", `Te has quedado sin cartas, has ganado la partida con una puntuación de ${gameData.totalGameScore}.`);
-        elements.onlyWhenGameEnded.style.display = "block"
+function getElementOrThrow<Type>(id: string): Type {
+    const element = document.getElementById(id) as Type;
+    if (!element) {
+        throw new Error(`Element with id "${id}" not found.`);
     }
-}
-
-function gameOver() {
-    setMessageText<HTMLDivElement>("message", `Has perdido la partida.`);
+    return element;
 }
 
 function setMessageText<Type extends ElementWithInnerText>(elementId: string, text: string, resetTime?: number): void {
@@ -75,24 +59,27 @@ function changeImage(imgId: string, newSrc: string): void {
     }
 }
 
+function gameWinned() {
+    const elements = initializeElements();
+    if (gameData.roundScore === scoreToWin) {
+        setMessageText<HTMLDivElement>("message", `Has ganado la partida.`);
+        elements.onlyWhenGameEnded.style.display = "block"
+    } else if (gameData.cardsInPiles === minOfCards) {
+        setMessageText<HTMLDivElement>("message", `Te has quedado sin cartas, has ganado la partida con una puntuación de ${gameData.totalGameScore}.`);
+        elements.onlyWhenGameEnded.style.display = "block"
+    }
+}
+
+function gameOver() {
+    setMessageText<HTMLDivElement>("message", `Has perdido la partida.`);
+}
+
 function updateUI(pickedCard: Card) {
     changeImage("card-img", pickedCard.url);
     setMessageText<HTMLDivElement>("card", String(gameData.roundScore));
 }
 
-function resetUI() {
-    const elements = initializeElements();
-    changeImage("card-img", "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/back.jpg");
-    elements.onlyOnGameContainer.style.display = "none"
-    elements.onlyWhenGameEnded.style.display = "block"
-}
-
-function updateElements() {
-    setMessageText<HTMLDivElement>("remaining-cards", `Cartas restantes: ${String(gameData.cardsInPiles)}`);
-}
-
 function pickCardButton(pickedCard: Card) {
-
     if (pickedCard) {
         updateUI(pickedCard);
         updateElements();
@@ -112,6 +99,17 @@ function newGameButton() {
     elements.onlyOnGameContainer.style.display = "block";
     elements.onlyWhenGameEnded.style.display = "none";
     setMessageText<HTMLDivElement>("message", `Has empezado una nueva partida.`);
+}
+
+function updateElements() {
+    setMessageText<HTMLDivElement>("remaining-cards", `Cartas restantes: ${String(gameData.cardsInPiles)}`);
+}
+
+function resetUI() {
+    const elements = initializeElements();
+    changeImage("card-img", "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/back.jpg");
+    elements.onlyOnGameContainer.style.display = "none"
+    elements.onlyWhenGameEnded.style.display = "block"
 }
 
 export { elements, updateUI, updateElements, gameWinned, setMessageText, changeImage, initializeElements, resetUI, gameOver, pickCardButton, stayButton, newGameButton };
