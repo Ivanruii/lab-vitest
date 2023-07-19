@@ -8,7 +8,7 @@ const gameData: gameData = {
     roundScore: 0,
     totalGameScore: 0
 }
-
+    
 const cardsOfDeck: Card[] = [
     { name: "1 Copas", value: 1, url: "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/copas/1_as-copas.jpg" },
     { name: "2 Copas", value: 2, url: "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/copas/2_dos-copas.jpg" },
