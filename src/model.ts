@@ -1,12 +1,12 @@
-const scoreToWin: number = 7.5;
-const minOfCards: number = 0;
+import { Card } from "./types"
 
-// Global variables
+const scoreToWin: number = 7.5
+const minOfCards: number = 0
 
 interface gameData {
-    cardsInPiles: number;
-    roundScore: number;
-    totalGameScore: number;
+    cardsInPiles: number
+    roundScore: number
+    totalGameScore: number
 }
 
 let gameData: gameData = {
@@ -14,15 +14,6 @@ let gameData: gameData = {
     roundScore: 0,
     totalGameScore: 0
 }
-
-
-interface Card {
-    name: string;
-    value: number;
-    url: string;
-}
-
-// Game elements
 
 const cardsOfDeck: Card[] = [
     { name: "1 Copas", value: 1, url: "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/copas/1_as-copas.jpg" },
@@ -35,7 +26,7 @@ const cardsOfDeck: Card[] = [
     { name: "Sota de copas", value: 0.5, url: "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/copas/10_sota-copas.jpg" },
     { name: "Caballo de copas", value: 0.5, url: "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/copas/11_caballo-copas.jpg" },
     { name: "Rey de copas", value: 0.5, url: "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/copas/12_rey-copas.jpg" }
-];
+]
 
 
-export { scoreToWin, minOfCards, gameData, cardsOfDeck };
+export { scoreToWin, minOfCards, gameData, cardsOfDeck }

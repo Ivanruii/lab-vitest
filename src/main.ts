@@ -3,19 +3,19 @@ import { initializeElements, pickCardButton, stayButton, newGameButton } from '.
 import { giveRandomCard, updateGame} from './motor'
 
 window.addEventListener("DOMContentLoaded", () => {
-    startGame();
-});
+    startGame()
+})
 
 function startGame() {
-    const elements = initializeElements();
+    const elements = initializeElements()
 
     elements.pickCardButton.onclick = () => { 
-        const pickedCard = giveRandomCard();
+        const pickedCard = giveRandomCard()
         updateGame(pickedCard) 
         pickCardButton(pickedCard)
     }
 
-    elements.stayButton.onclick = () => stayButton(giveRandomCard());
+    elements.stayButton.onclick = () => stayButton(giveRandomCard())
 
-    elements.newGameButton.onclick = newGameButton;
+    elements.newGameButton.onclick = newGameButton
 }
