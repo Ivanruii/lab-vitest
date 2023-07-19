@@ -8,4 +8,10 @@ interface Card {
     url: string
 }
 
-export { ElementWithInnerText, Card }
+interface gameData {
+    cardsInPiles: number
+    roundScore: number
+    totalGameScore: number
+}
+
+export { ElementWithInnerText, Card, gameData }

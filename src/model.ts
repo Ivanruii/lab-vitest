@@ -1,13 +1,7 @@
-import { Card } from "./types"
+import { Card, gameData } from "./types"
 
 const scoreToWin: number = 7.5
 const minOfCards: number = 0
-
-interface gameData {
-    cardsInPiles: number
-    roundScore: number
-    totalGameScore: number
-}
 
 let gameData: gameData = {
     cardsInPiles: 40,

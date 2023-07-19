@@ -77,11 +77,11 @@ function pickCardButton(pickedCard: Card) {
     }
 }
 
-function stayButton(pickedCard: Card) {
+function stayButton(value: number) {
     gameData.roundScore = 0
 
-    if (pickedCard) {
-        setMessageText<HTMLDivElement>("message", `Has decidido plantarte. Si hubieras cogido una carta, te hubiera tocado: ${pickedCard.value}`)
+    if (value) {
+        setMessageText<HTMLDivElement>("message", `Has decidido plantarte. Si hubieras cogido una carta, te hubiera tocado: ${value}`)
     }
 }
 
@@ -103,4 +103,23 @@ function resetUI() {
     elements.onlyWhenGameEnded.style.display = "block"
 }
 
-export { elements, updateUI, updateElements, gameWinned, setMessageText, changeImage, initializeElements, resetUI, gameOver, pickCardButton, stayButton, newGameButton }
+
+function resetGame() {
+    resetUI()
+    gameData.cardsInPiles = 40
+    gameData.roundScore = 0
+}
+
+function updateGame(pickedCard: Card) {
+    gameData.cardsInPiles -= 1
+    gameData.roundScore += pickedCard.value
+    gameData.totalGameScore += pickedCard.value
+    if (gameData.roundScore > scoreToWin) {
+        gameOver()
+        resetGame()
+    } else {
+        gameWinned()
+    }
+}
+
+export { elements, updateUI, updateElements, gameWinned, setMessageText, changeImage, initializeElements, resetUI, gameOver, pickCardButton, stayButton, newGameButton, updateGame }
