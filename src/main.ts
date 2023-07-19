@@ -1,6 +1,6 @@
 import './style.css'
 import { initializeElements, pickCardButton, stayButton, newGameButton } from './ui'
-import { giveRandomCard, updateGame} from './motor'
+import { giveRandomCard, updateGame } from './motor'
 
 window.addEventListener("DOMContentLoaded", () => {
     startGame()
@@ -9,9 +9,9 @@ window.addEventListener("DOMContentLoaded", () => {
 function startGame() {
     const elements = initializeElements()
 
-    elements.pickCardButton.onclick = () => { 
+    elements.pickCardButton.onclick = () => {
         const pickedCard = giveRandomCard()
-        updateGame(pickedCard) 
+        updateGame(pickedCard)
         pickCardButton(pickedCard)
     }
 
