@@ -3,7 +3,7 @@ import { Card, gameData } from "./types"
 const scoreToWin: number = 7.5
 const minOfCards: number = 0
 
-let gameData: gameData = {
+const gameData: gameData = {
     cardsInPiles: 40,
     roundScore: 0,
     totalGameScore: 0
