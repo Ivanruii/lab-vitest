@@ -9,7 +9,7 @@ interface gameData {
     totalGameScore: number;
 }
 
-const gameData: gameData = {
+let gameData: gameData = {
     cardsInPiles: 40,
     roundScore: 0,
     totalGameScore: 0
